@@ -1,13 +1,13 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import connectDB from './config/db.js';
-import serverless from 'serverless-http';
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const connectDB = require('./config/db.js');
+const serverless = require('serverless-http');
 
-import authRoutes from './routes/authRoutes.js';
-import userRoutes from './routes/userRoutes.js';
-import beneficiaryRoutes from './routes/beneficiaryRoutes.js';
-import statsRoutes from './routes/statsRoutes.js';
+const authRoutes = require('./routes/authRoutes.js');
+const userRoutes = require('./routes/userRoutes.js');
+const beneficiaryRoutes = require('./routes/beneficiaryRoutes.js');
+const statsRoutes = require('./routes/statsRoutes.js');
 
 dotenv.config();
 
@@ -33,4 +33,4 @@ app.get('/api/health', (req, res) => {
 
 // no app.listen() here for serverless
 
-export default serverless(app);
+module.exports = serverless(app);
