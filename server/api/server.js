@@ -32,4 +32,4 @@ app.get('/api/health', (req, res) => {
 // Remove app.listen() entirely
 
 // Export the handler for Vercel serverless
-module.exports.handler = serverless(app);
+module.exports = serverless(app);
