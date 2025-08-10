@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
+const API_URL = import.meta.env.VITE_API_URL; // Get from .env
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -38,7 +39,7 @@ export const AuthProvider = ({ children }) => {
       } catch (err) {
         console.error("Error restoring user:", err);
       } finally {
-        setLoading(false); // only now mark loading as false
+        setLoading(false);
       }
     };
 
@@ -46,10 +47,13 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const res = await axios.post("https://6cef8c4e-260e-40c3-b0bc-158d964ff6b4-00-1nod9ig07vha9.pike.replit.dev:3000/api/auth/login", {
+    const res = await axios.post(`${API_URL}/auth/login`, {
       email,
       password,
+    }, {
+      withCredentials: true, // Ensures cookies (if any) are sent
     });
+
     const { token } = res.data;
     localStorage.setItem("jwt_token", token);
 
