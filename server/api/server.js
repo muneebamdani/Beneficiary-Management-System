@@ -19,17 +19,24 @@ app.use(cors({
 
 app.use(express.json());
 
+// Optional: Root route to avoid 404 at base URL
+app.get('/', (req, res) => {
+  res.send('Backend server is running!');
+});
+
 const startServer = async () => {
   try {
     console.log('Connecting to MongoDB...');
     await connectDB();
     console.log('MongoDB connected');
 
+    // Register API routes
     app.use('/api/auth', authRoutes);
     app.use('/api/users', userRoutes);
     app.use('/api/beneficiaries', beneficiaryRoutes);
     app.use('/api/stats', statsRoutes);
 
+    // Health check endpoint
     app.get('/api/health', (req, res) => {
       res.json({ success: true, message: 'Server running' });
     });
