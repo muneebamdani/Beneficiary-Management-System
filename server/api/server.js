@@ -33,6 +33,7 @@ app.get('/api/health', (req, res) => {
 // no app.listen() here for serverless
 
 const PORT = process.env.PORT || 5000;
+console.log('Starting server...');
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
