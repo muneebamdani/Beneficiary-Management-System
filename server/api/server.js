@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('../config/db.js');
-const serverless = require('serverless-http');
 
 const authRoutes = require('../routes/authRoutes.js');
 const userRoutes = require('../routes/userRoutes.js');
@@ -33,4 +32,11 @@ app.get('/api/health', (req, res) => {
 
 // no app.listen() here for serverless
 
-module.exports = serverless(app);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+
+
+
