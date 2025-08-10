@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const res = await axios.post("https://beneficiary-app-muneeb-amdani.vercel.app/api/auth/login", {
+    const res = await axios.post("https://6cef8c4e-260e-40c3-b0bc-158d964ff6b4-00-1nod9ig07vha9.pike.replit.dev:3000/api/auth/login", {
       email,
       password,
     });
