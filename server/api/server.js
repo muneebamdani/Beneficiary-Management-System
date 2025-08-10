@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: ['https://beneficiary-management-system-ten.vercel.app'],
+  origin: ['https://beneficiary-app-muneeb-amdani.vercel.app'],
   credentials: true,
 }));
 
