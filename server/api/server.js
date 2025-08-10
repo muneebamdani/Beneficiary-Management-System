@@ -13,8 +13,10 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: ['https://beneficiary-app-muneeb-amdani.vercel.app'],
-  credentials: true,
+  origin: "https://beneficiary-app-muneeb-amdani.vercel.app", // frontend URL
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: ["Content-Type", "Authorization"], // add any other custom headers you use
+  credentials: true
 }));
 
 app.use(express.json());

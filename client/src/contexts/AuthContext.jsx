@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
-const API_URL = import.meta.env.VITE_API_URL; // Get from .env
+const API_URL = import.meta.env.VITE_API_URL; // Backend base URL from .env
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -47,12 +47,16 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const res = await axios.post(`${API_URL}/auth/login`, {
-      email,
-      password,
-    }, {
-      withCredentials: true, // Ensures cookies (if any) are sent
-    });
+    const res = await axios.post(
+      `${API_URL}/auth/login`,
+      { email, password },
+      {
+        headers: {
+          "Content-Type": "application/json", // Required for POST JSON
+        },
+        withCredentials: true, // Allow sending cookies if backend sets them
+      }
+    );
 
     const { token } = res.data;
     localStorage.setItem("jwt_token", token);
